@@ -7,14 +7,17 @@ export const loginUser = ({ email, password }) => {
         dispatch({ type: 'LOGIN_USER_SUCCESS', payload: user });
       })
       .catch((err) => {
-        console.log('error was: ', err.message);
         firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(user => {
             dispatch({ type: 'LOGIN_USER_SUCCESS', payload: user });
           })
           .catch(err => {
-            console.log('tried to create account but error was: ', err.message);
+            loginUserFail(dispatch, err);
           });
       });
   }
 };
+
+function loginUserFail(dispatch, err) {
+  dispatch({ type: 'LOGIN_USER_FAIL', payload: err.message })
+}

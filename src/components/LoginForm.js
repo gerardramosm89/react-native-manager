@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Card, CardSection, Input, Button } from './common';
 import { connect } from 'react-redux';
-import * as actions from '../actions/'
+import { loginUser } from '../actions/';
+
 class LoginForm extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +16,9 @@ class LoginForm extends Component {
   }
   onPasswordChange(password) {
     this.setState({ password }, () => console.log(this.state));
+  }
+  onButtonPress() {
+    this.props.loginUser({ email: this.state.email, password: this.state.password});    
   }
   render() {
     return (
@@ -36,14 +40,24 @@ class LoginForm extends Component {
           />
         </CardSection>
         <CardSection>
-          <Button>
+          <Button onPress={this.onButtonPress.bind(this)}>
             Login
           </Button>
         </CardSection>
       
+        <CardSection>
+          <Button onPress={() => console.log('this.props of loginForm is: ', this.props)}>
+            Console Log Props
+          </Button>
+        </CardSection>
+
       </Card>
     );
   }
 }
-
-export default connect(null, actions)(LoginForm);
+function mapStateToProps(state) {
+  return {
+    user: state.auth.user
+  }
+}
+export default connect(mapStateToProps, { loginUser })(LoginForm);

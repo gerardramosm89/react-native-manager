@@ -13,6 +13,7 @@ class EmployeeCreate extends Component {
 
   }
   render() {
+    console.log("this.props from employeeCreate is: ", this.props);
     return(
       <Card>
         <CardSection>

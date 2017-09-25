@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListView, View, Text, FlatList } from 'react-native';
+import { ListView, View, Text, FlatList, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { employeesFetch } from '../actions';
 import _ from 'lodash';
@@ -42,7 +42,7 @@ class EmployeeList extends Component {
     return(
       <FlatList
         data={this.props.employees}
-        renderItem={employee => <ListItem key={employee.uid} employee={employee} />}
+        renderItem={employee => <ListItem employee={employee} />}
       />
     );
   }

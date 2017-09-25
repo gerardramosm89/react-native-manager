@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 
 export const employeeUpdate = ({ prop, value }) => {
   return {
@@ -8,24 +9,24 @@ export const employeeUpdate = ({ prop, value }) => {
 }
 
 export const employeeCreate = ({ name, phone, shift}) => {
-  const { currentUser } = firebase.auth();
-  firebase.database().ref(`/users/${currentUser.uid}/employees`)
+  return (dispatch) => {
+    const { currentUser } = firebase.auth();
+    firebase.database().ref(`/users/${currentUser.uid}/employees`)
     .push({ name, phone, shift })
     .then(res => {
-      
-      console.log('success response was: ', res)
-      return {
+      console.log('Attempting to re-route from actions');
+      Actions.main({ type: 'reset' });
+      dispatch({
         type: 'EMPLOYEE_CREATE',
         payload: res
-      }
+      });
     })
     .catch(err => {
-  console.log('currentUser is: ', currentUser);
-  
       console.log('firebase save errored in: ', err)
-      return {
+      dispatch({
         type: 'EMPLOYEE_CREATE',
         payload: err
-      }
+      })
     });
+  }
 };

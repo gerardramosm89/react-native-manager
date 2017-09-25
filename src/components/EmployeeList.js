@@ -5,17 +5,17 @@ export default class EmployeeList extends Component {
   constructor(props) {
     super(props);
     this.employees = [
-      'Employee',
-      'Employee',
-      'Employee',
-      'Employee',
-      'Employee',
-      'Employee'
+      'Employee1',
+      'Employee2',
+      'Employee3',
+      'Employee4',
+      'Employee5',
+      'Employee6'
     ]
   }
   renderEmployees() {
     return this.employees.map(employee => {
-      return <Text>{employee}</Text>
+      return <Text key={employee}>{employee}</Text>
     });
   }
   render() {

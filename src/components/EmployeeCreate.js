@@ -13,12 +13,9 @@ class EmployeeCreate extends Component {
   }
   onButtonPress() {
     const { name, phone, shift } = this.props;
-
     this.props.employeeCreate({ name, phone, shift: shift || 'Monday' });
-
   }
   render() {
-    console.log("this.props from employeeCreate is: ", this.props);
     return(
       <Card>
         <EmployeeForm {...this.props} />

@@ -8,7 +8,7 @@ class ListItem extends Component {
   onRowPress(name) {
     const employee = this.props.employee.item;
     console.log(`pressed ${name}`)
-    Actions.employeeCreate({ employee });
+    Actions.employeeEdit({ employee });
   }
 
   render() {

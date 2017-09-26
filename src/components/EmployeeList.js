@@ -17,7 +17,6 @@ class EmployeeList extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.createDataSource(nextProps);
-    this.forceUpdate();
   }
 
   createDataSource({ employees }) {
@@ -27,7 +26,6 @@ class EmployeeList extends Component {
       rowHasChanged: (r1, r2) => r1 !== r2
     });
     this.dataSource = ds.cloneWithRows(this.props.employees);
-    this.forceUpdate();
   }
   renderRow(employee) {
     return <ListItem employee={employee} />

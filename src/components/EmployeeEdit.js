@@ -3,7 +3,7 @@ import { Card, CardSection, Button } from './common';
 import { connect } from 'react-redux';
 import EmployeeForm from './EmployeeForm';
 import { Actions } from 'react-native-router-flux';
-import { employeeUpdate } from '../actions';
+import { employeeUpdate, employeeSave } from '../actions';
 import _ from 'lodash';
 
 class EmployeeEdit extends Component {
@@ -13,7 +13,9 @@ class EmployeeEdit extends Component {
     });
   }
   onButtonPress() {
-
+    const { name, phone, shift } = this.props;
+    this.props.employeeSave({ name, phone, shift, uid: this.props.employee.uid })
+    console.log(name, phone, shift);
   }
   render() {
     return (
@@ -29,8 +31,9 @@ class EmployeeEdit extends Component {
   }
 }
 const mapStateToProps = (state) => {
+  const { name, phone, shift } = state.employeeForm;
   return {
-
+    name, phone, shift
   }
 }
-export default connect(mapStateToProps, { employeeUpdate })(EmployeeEdit);
+export default connect(mapStateToProps, { employeeUpdate, employeeSave })(EmployeeEdit);

@@ -7,12 +7,10 @@ class ListItem extends Component {
   
   onRowPress(name) {
     const employee = this.props.employee.item;
-    console.log(`pressed ${name}`)
     Actions.employeeEdit({ employee });
   }
 
   render() {
-    console.log('this.props from list item is: ', this.props);
     const { name, uid } = this.props.employee.item;
     const { titleStyle } = styles;
     return(

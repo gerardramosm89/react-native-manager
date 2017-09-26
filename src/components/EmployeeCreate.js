@@ -6,7 +6,11 @@ import { employeeUpdate, employeeCreate } from '../actions';
 import EmployeeForm from './EmployeeForm';
 
 class EmployeeCreate extends Component {
-
+  componentWillMount() {
+    this.props.employeeUpdate({ prop: 'name', value: '' });
+    this.props.employeeUpdate({ prop: 'phone', value: '' });
+    this.props.employeeUpdate({ prop: 'shift', value: '' });    
+  }
   onButtonPress() {
     const { name, phone, shift } = this.props;
 

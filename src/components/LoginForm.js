@@ -57,13 +57,6 @@ class LoginForm extends Component {
         <CardSection>
           {this.renderButton()}
         </CardSection>
-      
-        <CardSection>
-          <Button onPress={() => console.log('this.props of loginForm is: ', this.props)}>
-            Console Log Props
-          </Button>
-        </CardSection>
-
       </Card>
     );
   }
